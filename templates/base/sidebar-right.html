@@ -1,0 +1,44 @@
+{% load static %}
+<aside>
+    <div>
+        <ul>
+            <li>
+                <form class="searchform" action="{% url 'blog:search_post' %}" method="GET">
+                    <input class="searchbox" type="search" name="q" value="{{ request.GET.q }}" placeholder="検索"
+                        aria-label="Search">
+                    <button class="searchsubmit" type="submit">検索</button>
+                </form>
+            </li>
+            <li>
+                <div class="card">
+                    <h2 class="card-title"><span class="title-txt">人気の投稿</span></h2>
+                    <a href="" class="card-content"><span class="grade">1.</span><span class="txt">
+                            ランキングダンジョン　秋のドンドン杯　レギンレイヴパ　最速編
+                        </span></a>
+                    <a href="" class="card-content"><span class="grade">2.</span><span class="txt">
+                            極練片茂レギンレイヴ
+                        </span></a>
+                    <a href="" class="card-content"><span class="grade">3.</span><span class="txt">3Y異形の存在周回パーティー
+                        </span></a>
+                </div>
+            </li>
+            <li>
+                <div class="card">
+                    <h2 class="card-title"><span class="title-txt">話題のダンジョン</span></h2>
+                    <a href="" class="card-content"><span class="grade">1.</span><span
+                            class="txt">秋のドンドン杯【落ちコンなし】</span></a>
+                    <a href="" class="card-content"><span class="grade">2.</span><span class="txt">裏列界の化身</span></a>
+                    <a href="" class="card-content"><span class="grade">3.</span><span class="txt">極練の闘技場</span></a>
+                </div>
+            </li>
+            <li>
+                <div class="card">
+                    <h2 class="card-title"><span class="title-txt">話題のタグ</span></h2>
+                    <a href="" class="card-content"><span class="grade">1.</span><span class="txt">レギンレイヴ</span></a>
+                    <a href="" class="card-content"><span class="grade">2.</span><span class="txt">茂茂</span></a>
+                    <a href="" class="card-content"><span class="grade">3.</span><span class="txt">ランダン</span></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</aside>

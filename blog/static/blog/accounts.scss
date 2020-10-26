@@ -1,0 +1,85 @@
+main {
+    text-align: center;
+    font-size-adjust: 100%;
+    p {
+        a {
+            text-decoration: none;
+            color: rgb(255, 136, 0);
+        }
+    }
+    ul {
+        padding: 0;
+    }
+    li {
+        justify-content: center;
+        list-style: none;
+        display: flex;
+        width: 100%;
+        div.socialapp-twitter-icon {
+            width: 50px;
+            height: 50px;
+            display: block;
+            background-image: url("/static/images/twitter-icon.png");
+            background-size: 50px;
+        }
+        div.socialapp-google-icon {
+            width: 50px;
+            height: 50px;
+            display: block;
+            background-image: url("/static/images/google-icon.png");
+            background-size: 49px;
+        }
+    }
+    a.twitter {
+        margin-bottom: 10px;
+        background-color: #00aced;
+        text-decoration: none;
+        color: white;
+        font-size: 30px; 
+        padding: 2.5px 10%;
+        margin-left: 15px;
+        border-radius: 30px;
+    }
+    a.google {
+        margin-bottom: 10px;
+        background-color: #f31c4a;
+        text-decoration: none;
+        color: white;
+        font-size: 30px; 
+        padding: 2.5px 10%;
+        margin-left: 15px;
+        border-radius: 30px;
+    }
+    form {
+        p {
+            input[type="text"],
+            input[type="password"] {
+                width: 400px;
+                height: 35px;
+                font-size: 20px;
+                border-radius: 20px;
+                outline: none;
+                padding: 0 20px;
+            }
+            .primaryAction {
+                width: 100px;
+                border: none;
+                outline: none;
+                display: inline-block;
+                padding: 0.5em 1em;
+                text-decoration: none;
+                border-radius: 4px;
+                color: #ffffff;
+                background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
+                box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+                border-bottom: solid 3px #c58668;
+                    &:active {
+                    -webkit-transform: translateY(4px);
+                    transform: translateY(4px);
+                    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+                    border-bottom: none;
+                    }
+            }
+        }
+    }
+}

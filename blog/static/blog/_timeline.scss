@@ -1,0 +1,146 @@
+article {
+    min-width: 600px;
+    border-left: 1px #444 solid;
+    border-right: 1px #444 solid;
+    @media (min-width:1700px) {
+        min-width: 800px;
+    }
+    div.post-content {
+        padding-left: 20px;
+        width: 100%;
+    }
+    h3.post-title {
+        color: black;
+    }
+    img.dungeon_icon {
+        width: 50px;
+        height: 50px;
+    }
+    div.dungeon-box {
+        display: flex;
+        padding: 5px 10px;
+        margin-bottom: 10px;
+    }
+    h3.dungeon-title {
+        color: black;
+        margin: 0 10px;
+        font-size: 1.1em;
+    }
+    div.postbox {
+        width: calc(100% - 40px);
+        margin: 10px;
+        display: flex;
+    }
+    div.post-text {
+        color: black;
+    }
+    a.post_author {
+        height: min-content;
+    }
+    img.author_icon {
+        border-radius: 15px;
+        width: 50px;
+        height: 50px;
+    }
+    p.author_name {
+        font-weight: bold;
+        color: black;
+        margin: 0;
+        padding-bottom: 10px;
+    }
+    a.thumbnail-outer {
+        display: block;
+    }
+    div.tag-box {
+        display: flex;
+        margin-bottom: 20px;
+    }
+    a.tag {
+        display: flex;
+        padding: 2px 5px;
+        margin: 0 5px 5px 0;
+        border-radius: 10px;
+        width: min-content;
+        white-space: nowrap;
+        background-color: rgba($color: #8f8f8f, $alpha: .5);
+        color: black;
+        text-decoration: none;
+    }
+    img.thumbnail {
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+    div.page-title-bar {
+        width: 100%;
+        height: 53px;
+        border-bottom: 1px black solid;
+        position: sticky;
+        top: 0;
+        background-color: #f3f3f3;
+        z-index: 500;
+        display: flex;
+        img {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+            border-radius: 5px;
+            display: none;
+            @media (max-width: 1040px) {
+                display: block;
+            }
+        }
+    }
+    h2.page-title {
+        margin: 0;
+        padding: 9px 0;
+        margin-left: 15px;
+    }
+    .comment-icon {
+        width: 40px;
+    }
+    .meta-number {
+        font-size: 25px;
+    }
+    .create-content {
+        #id_content {
+            width: calc(100% - 10px);
+            border-radius: 10px;
+            padding: 5px;
+        }
+    }
+    @media (max-width: 1040px) {
+        div.page-title-bar {
+            height: 70px;
+        }
+        h2.page-title {
+            font-size: 35px;
+        }
+        div.postbox {
+            width: calc(100% - 40px);
+        }
+        img.author_icon {
+            width: 100px;
+            height: 100px;
+        }
+        img.dungeon_icon {
+            width: 100px;
+            height: 100px;
+        }
+        p.author_name {
+            font-size: 30px;
+        }
+        div.dungeon-box {
+            font-size: 20px;
+        }
+        a.tag {
+            font-size: 30px;
+        }
+        a.tag svg {
+            transform: scale(2);
+            height: 100%;
+            padding: 0 10px;
+        }
+    }
+}

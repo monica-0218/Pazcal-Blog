@@ -1,0 +1,67 @@
+.post-create {
+    padding: 20px;
+    .create-title {
+        width: 100%;
+        height: 50px;
+        font-size: 16px;
+        #id_title {
+            font-size: 16px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            width: calc(100% - 20px);
+        }
+    margin-bottom: 20px;
+    }
+    .create-thumbnail {
+        flex-direction: column;
+        #id_thumbnail {
+            margin-bottom: 10px;
+        }
+        #filename {
+            display: none; 
+        }
+    }
+    .create-dungeon {
+        input {
+            -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+            z-index: -1;
+        }
+        img {
+            transform: translateY(8px);
+            z-index: -1;
+        }
+        .dungeon-selector {
+            height: 150px;
+            overflow-y: scroll;
+            background-color: #eee;
+            padding: 10px;
+            p {
+                display: block;
+                margin: 0;
+            }
+        }
+        .dungeon-selector-label {
+            padding: 10px;
+        }
+        .dungeon-name {
+            font-size: 20px;
+        }
+        #search-text {
+            margin-left: 100px;
+            margin-bottom: 20px;
+        }
+    }
+    .create-tag {
+        margin: 20px 0;
+        width: 100%;
+        height: 50px;
+        font-size: 16px;
+        #id_tags {
+            font-size: 16px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            width: calc(100% - 20px);
+        }
+    }
+}

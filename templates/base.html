@@ -1,0 +1,31 @@
+{% load static %}
+{% load sass_tags %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>Pazcal掲示板 | {% block title %}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <link rel="icon" href="{% static 'images/app.jpg' %}">
+    <link rel="stylesheet" href="{% sass_src 'blog/style.scss' %}" type="text/css">
+    {% block head %}
+    {% endblock %}
+</head>
+
+<body class="main">
+    {% include "base/sidebar-left.html" %}
+
+    <main>
+        {% block content %}
+        {% endblock %}
+
+        {% include "base/sidebar-right.html" %}
+    </main>
+
+    {% block js %}
+    {% endblock %}
+
+</body>
+
+</html>

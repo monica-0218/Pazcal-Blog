@@ -1,0 +1,70 @@
+{% load static %}
+{% for post in object_list %}
+{% if user.is_authenticated %}
+<div class="postbox" href="/post/{{ post.id }}/">
+    {% if post.author.socialaccount_set.all.0.get_avatar_url  %}
+    <a class="post_author" href="">
+        <img class="author_icon" src="{{ post.author.socialaccount_set.all.0.get_avatar_url }}">
+    </a>
+    {% else %}
+    <a class="post_author" href="">
+        <img class="author_icon" src="{% static 'images/noicon.png' %}" alt="unidentifide-usericon">
+    </a>
+    {% endif %}
+    <div class="post-content">
+        <a class="post_author" href="/user/{{ post.author.id }}/">
+            <p class="author_name">
+                {{ post.author }}
+            </p>
+        </a>
+        <a href="/post/{{ post.id }}/" class="new_article_contents">
+            <div class="dungeon-box">
+                <img class=" dungeon_icon" src="{{ post.dungeon.img.url }}">
+                <div style="display: flex;">
+                    <h3 class="dungeon-title">【{{ post.dungeon }}】<br> {{ post.title }}</h3>
+                    <svg style="transform: rotate(-90deg); height: 50px;" viewBox="0 0 24 24">
+                        <g>
+                            <path
+                                d="M20.207 8.147c-.39-.39-1.023-.39-1.414 0L12 14.94 5.207 8.147c-.39-.39-1.023-.39-1.414 0-.39.39-.39 1.023 0 1.414l7.5 7.5c.195.196.45.294.707.294s.512-.098.707-.293l7.5-7.5c.39-.39.39-1.022 0-1.413z">
+                            </path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            <div class="tag-box">
+                {% for tag in post.tags.all %}
+                <a class="tag" href="/tag/{{ tag.id }}/">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                        x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24"
+                        style="enable-background:new 0 0 24 24;" xml:space="preserve">
+                        <g id="Icons" style="opacity:0.75;">
+                            <g id="tag">
+                                <g>
+                                    <path
+                                        d="M18.748,11.717c0.389,0.389,0.389,1.025,0,1.414l-4.949,4.95c-0.389,0.389-1.025,0.389-1.414,0l-6.01-6.01     c-0.389-0.389-0.707-1.157-0.707-1.707L5.667,6c0-0.55,0.45-1,1-1h4.364c0.55,0,1.318,0.318,1.707,0.707L18.748,11.717z      M8.104,7.456C7.525,8.032,7.526,8.97,8.103,9.549c0.578,0.577,1.516,0.577,2.095,0.001c0.576-0.578,0.576-1.517,0-2.095     C9.617,6.879,8.68,6.878,8.104,7.456z" />
+                                </g>
+                            </g>
+                        </g>
+                        <g id="Guides" style="display:none;">
+                        </g>
+                    </svg>{{ tag }}</a>
+                {% endfor %}
+            </div>
+            <a href="{{ post.thumbnail.url }}" data-lightbox="group">
+                <img class="thumbnail" src="{{ post.thumbnail.url }}" alt="{{ post.title }}">
+            </a>
+        </a>
+        <svg class="comment-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            id="icon" x="0px" y="0px" viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;"
+            xml:space="preserve">
+            <path
+                d="M720,899.5L512.4,720H200c-77.2,0-140-62.8-140-140V280c0-77.2,62.8-140,140-140h600c77.2,0,140,62.8,140,140v300 c0,77.2-62.8,140-140,140h-80V899.5z M200,180c-55.1,0-100,44.9-100,100v300c0,55.1,44.9,100,100,100h327.6L681,815.5V680h119 c55.1,0,100-44.9,100-100V280c0-55.1-44.9-100-100-100H200z" />
+        </svg>
+        <span class="meta-number">{{ post.comments.all | length }}</span>
+    </div>
+</div>
+<hr>
+{% endif %}
+{% empty %}
+<p style="text-align: center;width: 100%">まだ投稿がありません‍</p>
+{% endfor %}

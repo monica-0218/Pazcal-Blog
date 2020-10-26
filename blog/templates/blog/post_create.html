@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block description %}
+{% endblock %}
+{% block head %}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.js"
+    integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+{% endblock  %}
+{% block title %}
+投稿フォーム
+{% endblock %}
+{% block content %}
+<article>
+    <div class="page-title-bar">
+        <h2 class="page-title">投稿する</h2>
+    </div>
+    <div class="post-create">
+        {% with form as f %}
+        <form method="POST" id="post_create" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="create-title">タイトル<br>{{ f.title }}
+            </div>
+            <div class="create-thumbnail">
+                サムネイル<br>{{ f.thumbnail }}
+            </div>
+            <div class="create-dungeon">
+                ダンジョン選択
+                <input type="text" id="search-text" placeholder="検索して選ぶ">
+                <br>
+                <div class="dungeon-selector">
+                    {% for dungeon in Dungeon_list %}
+                    <p number="{{ forloop.counter0 }}">
+                        <label class="dungeon-selector-label">
+                            <input type="radio" name="dungeon" value="{{ dungeon.id }}" required="required" />
+                            <img style="width: 30px; height: 30px;" src="{{ dungeon.img.url }}">
+                            <span class="dungeon-name">{{ dungeon.name }}</span>
+                        </label>
+                    </p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="create-tag">
+                タグ<br>{{ f.tags }}
+            </div>
+            <div class="create-content">
+                本文<br>{{ f.content }}
+            </div>
+        </form>
+        {{ f.media }}
+        <input type="submit" value="投稿する" form="post_create">
+        {% endwith %}
+    </div>
+</article>
+{% endblock %}
+{% block js %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    window.onload = function () {
+        document.getElementById('id_thumbnail').insertAdjacentHTML('afterend', '<img id="preview" src="" style="max-width:450px; min-width:450px; height: 300px; margin: 0 55px;">')
+        document.getElementById('id_tags').setAttribute('placeholder', 'コンマ(半角)区切りでタグを追加できます。例) 茂茂,編成難易度低め');
+        document.getElementById('id_content').setAttribute(
+            'placeholder',
+            'Markdown形式で書くことができます。 \n　例) ###あああ(見出し)  \n　| 階層 | やること | \n | ---- | ---- | \n | 3F | サレーネを打ってずらします | \n | 6F | サザイールを使ってずらします | (テーブル) \n - リスト1 \n - リスト2 \n - リスト3 (箇条書き)'
+        );
+    };
+    function previewImage(obj) {
+        var fileReader = new FileReader();
+        fileReader.onload = (function () {
+            document.getElementById('preview').src = fileReader.result;
+        });
+        fileReader.readAsDataURL(obj.files[0]);
+    }
+    searchWord = function () {
+        var searchResult,
+            searchText = $(this).val(), // 検索ボックスに入力された値
+            targetText,
+            hitNum,
+            hiddenListAll,
+            hiddenList;
+
+        // 検索結果を格納するための配列を用意
+        searchResult = [];
+        hiddenList = [];
+
+        // 検索結果エリアの表示を空にする
+        $('#search-result__list').empty();
+        $('.search-result__hit-num').empty();
+        $('.dungeon-selector p').css('display', 'block');
+
+        // 検索ボックスに値が入ってる場合
+        if (searchText != '') {
+            $('.dungeon-selector-label').each(function () {
+                targetText = $(this).text();
+
+                // 検索対象となるリストに入力された文字列が存在するかどうかを判断
+                if (targetText.indexOf(searchText) != -1) {
+                    // 存在する場合はそのリストのテキストを用意した配列に格納
+                    searchResult.push($(this).parent().attr('number'))
+                }
+            });
+
+            // 検索結果をページに出力
+            for (var i = 0; i < searchResult.length; i++) {
+                console.log('.dungeon-selector p[number="' + searchResult[i] + '"]')
+                hiddenList.push('.dungeon-selector p[number="' + searchResult[i] + '"]')
+            }
+            hiddenListAll = '' + hiddenList.join(',') + '';
+            $('.dungeon-selector p').not(hiddenListAll).css('display', 'none');
+        }
+    };
+
+    // searchWordの実行
+    $('#search-text').on('input', searchWord);
+</script>
+{% endblock %}

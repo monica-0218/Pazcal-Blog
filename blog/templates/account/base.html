@@ -1,0 +1,23 @@
+{% load static %}
+{% load sass_tags %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>Pazcal掲示板 | {% block title %}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <link rel="icon" href="{% static 'images/app.jpg' %}">
+    <link rel="stylesheet" href="{% sass_src 'blog/accounts.scss' %}" type="text/css">
+</head>
+
+<body class="main">
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+
+</html>
